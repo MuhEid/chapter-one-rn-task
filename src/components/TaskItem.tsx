@@ -23,13 +23,19 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
                 {task.done ? <View style={styles.innerCircle} /> : null}
             </Pressable>
             <View style={styles.textContainer}>
-                <Text
-                    style={[styles.title, task.done && styles.titleDone]}
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                >
-                    {task.title}
-                </Text>
+                <View style={styles.titleRow}>
+                    <Text
+                        style={[styles.title, task.done && styles.titleDone]}
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
+                    >
+                        {task.title}
+                    </Text>
+                    <View style={styles.badge}>
+                        <View style={[styles.badgeDot, getBadgeDotStyle(task.priority)]} />
+                        <Text style={styles.badgeText}>{capitalize(task.priority)}</Text>
+                    </View>
+                </View>
                 <Text style={styles.dateText}>{day}</Text>
             </View>
             <Pressable
@@ -43,6 +49,23 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
         </View>
     );
 };
+
+function capitalize(s: string) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+function getBadgeDotStyle(priority: Task['priority']) {
+    switch (priority) {
+        case 'high':
+            return { backgroundColor: '#EADBC0' };
+        case 'medium':
+            return { backgroundColor: '#CFC7B8' };
+        case 'low':
+            return { backgroundColor: '#2A3A66' };
+        default:
+            return { backgroundColor: '#CFC7B8' };
+    }
+}
 
 const CIRCLE_SIZE = 24;
 
@@ -83,13 +106,34 @@ const styles = StyleSheet.create({
     textContainer: {
         flex: 1,
     },
+    titleRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+    },
     title: {
         fontSize: 16,
         color: '#F5F1E8',
+        flexShrink: 1,
     },
     titleDone: {
         color: '#CFC7B8',
         textDecorationLine: 'line-through',
+    },
+    badge: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginLeft: 8,
+    },
+    badgeDot: {
+        width: 8,
+        height: 8,
+        borderRadius: 4,
+        marginRight: 6,
+    },
+    badgeText: {
+        color: '#CFC7B8',
+        fontSize: 12,
+        fontWeight: '600',
     },
     dateText: {
         fontSize: 12,
