@@ -12,6 +12,7 @@ export default function Tasks() {
             id: String(Date.now()),
             title,
             done: false,
+            createdAt: Date.now(),
         };
         setTasks((prev) => [newTask, ...prev]);
     };
@@ -28,9 +29,13 @@ export default function Tasks() {
         setTasks((prev) => prev.filter((task) => task.id !== id));
     };
 
-    // Incomplete at top, completed at bottom
+    // Incomplete at top, completed at bottom; newest first within each group
     const sortedTasks = useMemo(
-        () => [...tasks].sort((a, b) => Number(a.done) - Number(b.done)),
+        () =>
+            [...tasks].sort((a, b) => {
+                if (a.done !== b.done) return Number(a.done) - Number(b.done);
+                return b.createdAt - a.createdAt;
+            }),
         [tasks]
     );
 
