@@ -44,42 +44,43 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingVertical: 10,
+        paddingVertical: 12,
         paddingHorizontal: 16,
-        backgroundColor: 'white',
+        backgroundColor: '#12244D',
         borderBottomWidth: StyleSheet.hairlineWidth,
-        borderBottomColor: '#eee',
+        borderBottomColor: '#2A3A66',
     },
     circle: {
         width: CIRCLE_SIZE,
         height: CIRCLE_SIZE,
         borderRadius: CIRCLE_SIZE / 2,
         borderWidth: 2,
-        borderColor: '#ccc',
+        borderColor: '#CFC7B8',
         alignItems: 'center',
         justifyContent: 'center',
         marginRight: 14,
+        backgroundColor: '#12244D',
     },
     circleUndone: {
-        backgroundColor: 'white',
+        // outlined look, no inner fill
     },
     circleDone: {
-        backgroundColor: '#94c9a9', // Light green background when done
-        borderColor: '#659977',
+        backgroundColor: '#EADBC0',
+        borderColor: '#EADBC0',
     },
     innerCircle: {
         width: CIRCLE_SIZE * 0.55,
         height: CIRCLE_SIZE * 0.55,
         borderRadius: (CIRCLE_SIZE * 0.55) / 2,
-        backgroundColor: '#41724d', // Darker green inner circle
+        backgroundColor: '#0B1B3B',
     },
     title: {
         flex: 1,
         fontSize: 16,
-        color: '#222',
+        color: '#F5F1E8',
     },
     titleDone: {
-        color: '#aaa',
+        color: '#CFC7B8',
         textDecorationLine: 'line-through',
     },
     deleteButton: {
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
     },
     deleteIcon: {
         fontSize: 18,
+        color: '#CFC7B8',
     },
 });
 
