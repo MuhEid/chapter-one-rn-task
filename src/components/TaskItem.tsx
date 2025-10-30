@@ -9,6 +9,9 @@ type TaskItemProps = {
 };
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
+    const d = new Date(task.createdAt);
+    const day = d.toLocaleDateString();
+
     return (
         <View style={styles.container}>
             <Pressable
@@ -19,13 +22,16 @@ const TaskItem: React.FC<TaskItemProps> = ({ task, onToggle, onDelete }) => {
             >
                 {task.done ? <View style={styles.innerCircle} /> : null}
             </Pressable>
-            <Text
-                style={[styles.title, task.done && styles.titleDone]}
-                numberOfLines={1}
-                ellipsizeMode="tail"
-            >
-                {task.title}
-            </Text>
+            <View style={styles.textContainer}>
+                <Text
+                    style={[styles.title, task.done && styles.titleDone]}
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                >
+                    {task.title}
+                </Text>
+                <Text style={styles.dateText}>{day}</Text>
+            </View>
             <Pressable
                 style={styles.deleteButton}
                 onPress={onDelete}
@@ -74,14 +80,21 @@ const styles = StyleSheet.create({
         borderRadius: (CIRCLE_SIZE * 0.55) / 2,
         backgroundColor: '#0B1B3B',
     },
-    title: {
+    textContainer: {
         flex: 1,
+    },
+    title: {
         fontSize: 16,
         color: '#F5F1E8',
     },
     titleDone: {
         color: '#CFC7B8',
         textDecorationLine: 'line-through',
+    },
+    dateText: {
+        fontSize: 12,
+        color: '#CFC7B8',
+        marginTop: 2,
     },
     deleteButton: {
         marginLeft: 14,
