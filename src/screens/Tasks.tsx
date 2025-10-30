@@ -2,12 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { View, FlatList, StyleSheet, Text } from 'react-native';
 import AddTaskBar from '../components/AddTaskBar';
 import TaskItem from '../components/TaskItem';
-
-export type Task = {
-    id: string;
-    title: string;
-    done: boolean;
-};
+import { Task } from '../types/task';
 
 export default function Tasks() {
     const [tasks, setTasks] = useState<Task[]>([]);

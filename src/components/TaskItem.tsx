@@ -1,11 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Pressable } from 'react-native';
-
-type Task = {
-    id: string;
-    title: string;
-    done: boolean;
-};
+import { Task } from '../types/task';
 
 type TaskItemProps = {
     task: Task;
