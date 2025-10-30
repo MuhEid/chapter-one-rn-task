@@ -3,6 +3,7 @@
 ## Overview
 
 This is a simple React Native task manager app created for Chapter One as a home assessment. It lets you manage a list of tasks with an intuitive mobile interface. All data is managed locally within the app and is not persisted across restarts.
+I took the liberty to add some extra features other than the requested, I hope you find it helpful and like it.
 
 ## Features
 
