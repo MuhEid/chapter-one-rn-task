@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { View, TextInput, Pressable, Text, StyleSheet } from 'react-native';
+import type { Priority } from '../types/task';
 
 type AddTaskBarProps = {
-    onAdd: (title: string) => void;
+    onAdd: (title: string, priority: Priority) => void;
 };
 
 const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
     const [title, setTitle] = useState('');
+    const [selectedPriority, setSelectedPriority] = useState<Priority>('medium');
 
     const trimmed = title.trim();
     const isDisabled = trimmed.length === 0;
@@ -14,7 +16,7 @@ const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
     const handleAdd = () => {
         const finalTitle = title.trim();
         if (finalTitle === '') return;
-        onAdd(finalTitle);
+        onAdd(finalTitle, selectedPriority);
         setTitle('');
     };
 
@@ -32,6 +34,26 @@ const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
                 autoCorrect={false}
                 autoCapitalize="none"
             />
+            <View style={styles.priorityRow}>
+                <PriorityChip
+                    label="High"
+                    isActive={selectedPriority === 'high'}
+                    color="#EADBC0"
+                    onPress={() => setSelectedPriority('high')}
+                />
+                <PriorityChip
+                    label="Medium"
+                    isActive={selectedPriority === 'medium'}
+                    color="#CFC7B8"
+                    onPress={() => setSelectedPriority('medium')}
+                />
+                <PriorityChip
+                    label="Low"
+                    isActive={selectedPriority === 'low'}
+                    color="#2A3A66"
+                    onPress={() => setSelectedPriority('low')}
+                />
+            </View>
             <Pressable
                 style={({ pressed }) => [
                     styles.button,
@@ -49,16 +71,36 @@ const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
     );
 };
 
+function PriorityChip({ label, isActive, color, onPress }: { label: string; isActive: boolean; color: string; onPress: () => void }) {
+    return (
+        <Pressable
+            onPress={onPress}
+            accessibilityRole="button"
+            accessibilityLabel={`Set priority ${label}`}
+            style={({ pressed }) => [
+                styles.chip,
+                { borderColor: color },
+                isActive && { backgroundColor: color },
+                pressed && { opacity: 0.85 },
+            ]}
+        >
+            <Text style={[styles.chipText, isActive && styles.chipTextActive]}>
+                {label}
+            </Text>
+        </Pressable>
+    );
+}
+
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
-        alignItems: 'center',
+        flexDirection: 'column',
+        alignItems: 'stretch',
         paddingVertical: 10,
         paddingHorizontal: 16,
         backgroundColor: 'transparent',
+        gap: 8,
     },
     input: {
-        flex: 1,
         fontSize: 16,
         color: '#F5F1E8',
         borderWidth: 1,
@@ -66,8 +108,27 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         paddingVertical: 10,
         paddingHorizontal: 12,
-        marginRight: 10,
         backgroundColor: '#12244D',
+    },
+    priorityRow: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 8,
+    },
+    chip: {
+        borderWidth: 1,
+        borderRadius: 999,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
+        backgroundColor: 'transparent',
+    },
+    chipText: {
+        color: '#F5F1E8',
+        fontSize: 12,
+        fontWeight: '600',
+    },
+    chipTextActive: {
+        color: '#0B1B3B',
     },
     button: {
         backgroundColor: '#EADBC0',
