@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a simple React Native to-do app created for Chapter One. It lets you manage a list of tasks with an intuitive mobile interface. All data is managed locally within the app and is not persisted across restarts.
+This is a simple React Native task manager app created for Chapter One as a home assessment. It lets you manage a list of tasks with an intuitive mobile interface. All data is managed locally within the app and is not persisted across restarts.
 
 ## Features
 
@@ -19,24 +19,28 @@ This is a simple React Native to-do app created for Chapter One. It lets you man
 -   **Responsive & Accessible:** Buttons provide press feedback and have accessibility labels. Empty-state message is shown if you have no tasks.
 -   **Settings Button (placeholder):** Present in the header for future options.
 
+## Screenshots
+
+-   Home page
+
+![Home - dark theme](./screenshot_one.jpg)
+
+-   After adding one task
+
+![One task added](./screenshot_two.jpg)
+
 ## Setup & Running Instructions
 
 1. **Install [Node.js](https://nodejs.org/)** (if not already installed)
-2. **Install Expo CLI** (if not already installed, globally):
+2. **Bootstrap with Expo template** (in an empty project directory):
     ```bash
-    npm install -g expo-cli
+    npx create-expo-app . --template
     ```
-3. **Install NPM Dependencies** (in the project directory):
-    ```bash
-    npm install
-    ```
-4. **Start the App:**
+3. **Start the App:**
     ```bash
     npm start
-    # or
-    expo start
     ```
-5. **Run on Device or Emulator:**
+4. **Run on Device or Emulator:**
     - Scan the QR code with Expo Go (iOS/Android app), or
     - Press `a` for Android emulator, `i` for iOS simulator, or `w` for web (if available)
 
@@ -69,5 +73,3 @@ This is a simple React Native to-do app created for Chapter One. It lets you man
 -   For testing on a real device, install the Expo Go app from your device's app store.
 
 ---
-
-Feel free to modify and extend this project for learning or experimentation!
