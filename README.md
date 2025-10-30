@@ -7,10 +7,17 @@ This is a simple React Native to-do app created for Chapter One. It lets you man
 ## Features
 
 -   **Add New Task:** Enter a title and add a task; the most recent appears first.
+-   **Priority on Add:** Choose High / Medium / Low when creating a task (defaults to Medium).
+-   **Priority Filter:** Quickly filter the list by All / High / Medium / Low.
 -   **Mark as Done/Undone:** Toggle a task's status by tapping the circle.
 -   **Delete Task:** Remove any task using the trash button.
--   **Smart Ordering:** Incomplete tasks are shown at the top; completed ones below.
+-   **Creation Date:** Each task shows the day it was created under the title.
+-   **Smart Ordering:** Incomplete first, then completed; newest first within each group.
+-   **Priority Badge:** A small colored badge (dot + text) on each task (High/Medium/Low).
+-   **Dark Theme:** Navy background with warm off‑white text and subtle beige accents.
+-   **Background Pattern:** A faint “tiny drawings” dot‑pattern overlay for texture.
 -   **Responsive & Accessible:** Buttons provide press feedback and have accessibility labels. Empty-state message is shown if you have no tasks.
+-   **Settings Button (placeholder):** Present in the header for future options.
 
 ## Setup & Running Instructions
 
@@ -33,12 +40,19 @@ This is a simple React Native to-do app created for Chapter One. It lets you man
     - Scan the QR code with Expo Go (iOS/Android app), or
     - Press `a` for Android emulator, `i` for iOS simulator, or `w` for web (if available)
 
+## Usage Notes
+
+-   Use the input to type a task title, pick a priority (High/Medium/Low), then tap **Add** or press the return key.
+-   Use the filter row (All/High/Medium/Low) to narrow the list by priority. Tap **All** to see everything again.
+-   Tap the circular button to mark a task as done/undone. Tap the trash icon to delete a task.
+-   Sorting is automatic: incomplete tasks at the top, completed at the bottom; newest first within each section.
+
 ## Project Structure
 
 -   `src/screens/Tasks.tsx`: The main app screen (home page)
 -   `src/components/TaskItem.tsx`: Individual task row component
--   `src/components/AddTaskBar.tsx`: Task input bar component
--   `src/types/task.ts`: Central Task type definition
+-   `src/components/AddTaskBar.tsx`: Task input bar with priority selector
+-   `src/types/task.ts`: Central Task and Priority type definitions
 
 ## Third-party Libraries
 
