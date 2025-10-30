@@ -24,6 +24,7 @@ const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
                 value={title}
                 onChangeText={setTitle}
                 placeholder="Add a task..."
+                placeholderTextColor="#CFC7B8"
                 returnKeyType="done"
                 style={styles.input}
                 onSubmitEditing={handleAdd}
@@ -42,7 +43,7 @@ const AddTaskBar: React.FC<AddTaskBarProps> = ({ onAdd }) => {
                 accessibilityLabel="Add task"
                 accessibilityRole="button"
             >
-                <Text style={styles.buttonText}>Add</Text>
+                <Text style={[styles.buttonText, isDisabled && styles.buttonTextDisabled]}>Add</Text>
             </Pressable>
         </View>
     );
@@ -54,39 +55,43 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingVertical: 10,
         paddingHorizontal: 16,
-        backgroundColor: 'white',
+        backgroundColor: 'transparent',
     },
     input: {
         flex: 1,
         fontSize: 16,
+        color: '#F5F1E8',
         borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 8,
-        paddingVertical: 8,
+        borderColor: '#2A3A66',
+        borderRadius: 10,
+        paddingVertical: 10,
         paddingHorizontal: 12,
         marginRight: 10,
-        backgroundColor: '#fafafd',
+        backgroundColor: '#12244D',
     },
     button: {
-        backgroundColor: '#222',
+        backgroundColor: '#EADBC0',
         paddingVertical: 10,
         paddingHorizontal: 18,
-        borderRadius: 8,
-        minWidth: 56,
+        borderRadius: 10,
+        minWidth: 64,
         alignItems: 'center',
         justifyContent: 'center',
     },
     buttonText: {
-        color: '#fff',
+        color: '#0B1B3B',
         fontSize: 16,
         fontWeight: 'bold',
         letterSpacing: 0.5,
     },
+    buttonTextDisabled: {
+        color: '#3B4A75',
+    },
     buttonPressed: {
-        opacity: 0.7,
+        opacity: 0.85,
     },
     buttonDisabled: {
-        backgroundColor: '#bbb',
+        backgroundColor: '#CFC7B8',
     },
 });
 
